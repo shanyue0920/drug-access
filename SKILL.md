@@ -2,7 +2,7 @@
 name: drug-access
 slug: drug-access
 displayName: 药品大准入·医保·集采·药经
-version: 2.0.0
+version: 2.0.1
 author: zhouwei <WeChat: Shanyue0920>
 summary: 药品大准入(Market Access)结构化分析。9活动簇覆盖医保准入/基药目录准入/集采与招采(国采·全国联盟·跨省联盟·省级·挂网)/医院机构准入/药物经济学HEOR/定价策略/商保与创新支付/政府事务与政策情报/上市前准入准备。以准入生命周期路径为导航(上市→挂网→目录准入→医院→集采→续约)，三层横切规则(政策实时溯源+地域差异矩阵+数据校准)贯穿所有簇。核心创新：政策版本对比机制(新旧版差异一目了然)+政策5维解读框架+各省差异矩阵。本 skill 内置知识库(临床档案+校准规则+循证三件套)，强制数据校准(🔍/💭)与准入信息框定，划清准入独占/协同接口/非准入边界。
 license: MIT
@@ -19,7 +19,7 @@ description: >
   上市前准入准备(路径规划/价值档案预研/定价预研/谈判准备)。
   以准入生命周期路径为核心导航框架(上市→挂网→目录准入→医院→集采→续约)，
   三层横切规则贯穿：①政策实时溯源(原文链接+文号+截至日期) ②地域差异矩阵(各省挂网/惠民保/药事会/医保落地差异) ③数据校准(🔍/💭)。
-  本 skill 内置共享底座，不重复临床基础与校准规则。
+  本 skill 内置基础模块（foundation.md），不重复临床基础与校准规则。
   按使用者水平切换新人(详细+输入清单)或资深(精简+直给初稿)深度档位。
   严格区分准入独占职能(深做)、协同接口(医学/市场/销售/注册/合规,只给接口清单)、
   非准入边界(纯医学证据生成/纯市场推广/纯销售执行/纯注册申报,外置)。
@@ -32,8 +32,8 @@ allowed-tools: WebSearch, WebFetch, Read, Write
 ---
 
 
-> **🔧 自包含声明**：本 skill 已**完全自包含**，可独立运行，无需安装任何其他 skill 或外部共享底座。
-> 内置共享知识存于本 skill 的 `references/`：临床档案框架与校准规则见 `references/foundation.md`；循证三件套见 `references/evidence-levels.md`、`references/drug-classes.md`、`references/market-methodology.md`；专利FTO框架见 `references/foundation.md` §三。
+> **🔧 自包含声明**：本 skill 已**完全自包含**，可独立运行，无需安装任何其他 skill 或外部依赖。
+> 内置共享知识存于本 skill 的 `references/`：临床档案框架与校准规则见 `references/foundation.md`；循证三件套见 `references/evidence-levels.md`、`references/drug-classes.md`、`references/market-methodology.md`；专利FTO框架见 `references/foundation.md` §3。
 
 # 药品大准入 Skill
 > 作者 / 出品：zhouwei <WeChat：Shanyue0920>
@@ -50,7 +50,7 @@ allowed-tools: WebSearch, WebFetch, Read, Write
 
 **核心创新——地域差异矩阵**：各省挂网窗口期/价格联动/红黄标不同、各市惠民保遴选机制/特药目录不同、各省药事会/双通道/DRG标准不同——本 Skill 必须按省/市给出差异化建议，不给"全国通用"笼统结论。
 
-**内置共享知识**：本 Skill 内置共享底座（临床档案/校准规则/循证三件套/专利FTO）——临床档案(机制/靶点/PK/安全性/循证三件套)、数据校准规则(🔍/💭)、references 知识库(evidence-levels.md / drug-classes.md / market-methodology.md)。不重复这些基础内容，需要时直接 Read 调用。
+**内置共享知识**：本 Skill 内置基础模块（foundation.md）（临床档案/校准规则/循证三件套/专利FTO）——临床档案(机制/靶点/PK/安全性/循证三件套)、数据校准规则(🔍/💭)、references 知识库(evidence-levels.md / drug-classes.md / market-methodology.md)。不重复这些基础内容，需要时直接 Read 调用。
 
 ## 2. 准入生命周期路径导航（核心机制 · 入口判断）
 
@@ -448,7 +448,7 @@ allowed-tools: WebSearch, WebFetch, Read, Write
 
 ## 8. 数据校准规则（强制）
 
-本 Skill 输出的每条关键数据都必须可溯源、可校验。严格执行以下 5 条（与 本 skill references/foundation.md §3 对齐）：
+本 Skill 输出的每条关键数据都必须可溯源、可校验。严格执行以下 5 条（与 本 skill references/foundation.md §2 对齐）：
 
 - **来源分级标注**：每条关键数据标可信度——🔍 已查证（官方说明书/NMPA·医保局·卫健委/权威指南/核心文献/权威数据如IQVIA·米内·药智）、💭 推测或不确定。禁止把 💭 当 🔍 呈现。
 - **关键事实交叉校验**：医保类别/集采状态/挂网价/基药状态/谈判价格等，须至少 2 个独立来源一致方可写为确定；不一致或仅单源时标「待核实」。
